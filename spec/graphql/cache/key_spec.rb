@@ -61,7 +61,7 @@ module GraphQL
       describe '#object_identifier' do
         context 'when metadata key is a symbol' do
           before do
-            field.metadata[:cache] = { key: :foo }
+            field.instance_variable_set(:@cache_config, { key: :foo })
           end
 
           it 'calls the symbol on object' do
@@ -76,7 +76,7 @@ module GraphQL
           end
 
           before do
-            field.metadata[:cache] = { key: key_proc }
+            field.instance_variable_set(:@cache_config, { key: key_proc })
           end
 
           it 'calls the proc passing object and query context' do
@@ -87,7 +87,7 @@ module GraphQL
 
         context 'when metadata key is nil' do
           before do
-            field.metadata[:cache] = { key: nil }
+            field.instance_variable_set(:@cache_config, { key: nil })
           end
 
           it 'uses guess_id' do
@@ -98,7 +98,7 @@ module GraphQL
 
         context 'when metadata key is an object' do
           before do
-            field.metadata[:cache] = { key: 'foo' }
+            field.instance_variable_set(:@cache_config, { key: 'foo' })
           end
 
           it 'returns metadata key' do

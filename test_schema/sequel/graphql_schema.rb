@@ -31,6 +31,7 @@ end
 class CacheSchema < GraphQL::Schema
   query QueryType
 
+  use GraphQL::Analysis::AST
   use GraphQL::Execution::Interpreter
   use GraphQL::Cache
 
